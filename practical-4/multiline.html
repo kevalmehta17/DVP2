@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multiple Line Charts / using D3.js & CanvasJS</title>
+
+    <!-- D3.js (not used in this example, but included) -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- CanvasJS -->
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+    <style>
+      #chartContainer {
+        width: 80%;
+        height: 400px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 style="text-align: center">
+      Multiple Line Charts Using D3.js and CanvasJS
+    </h2>
+    <div id="chartContainer"></div>
+
+    <script>
+      // Sample data
+      const data = [
+        { category: "0-10", value: 100, value2: 110 },
+        { category: "10-20", value: 90, value2: 95 },
+        { category: "20-30", value: 66, value2: 60 },
+        { category: "30-40", value: 60, value2: 70 },
+      ];
+
+      // Format data for CanvasJS
+      const formattedData1 = data.map((d) => ({
+        label: d.category,
+        y: d.value,
+      }));
+
+      const formattedData2 = data.map((d) => ({
+        label: d.category,
+        y: d.value2,
+      }));
+
+      // Create the chart
+      const chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+          text: "Age Group Distribution",
+        },
+        axisY: {
+          title: "No. of People",
+        },
+        data: [
+          {
+            type: "line",
+            name: "Age Group 1",
+            showInLegend: true,
+            color: "#FF5733",
+            dataPoints: formattedData1,
+          },
+          {
+            type: "line",
+            name: "Age Group 2",
+            showInLegend: true,
+            color: "#33B5FF",
+            dataPoints: formattedData2,
+          },
+        ],
+      });
+
+      chart.render();
+    </script>
+  </body>
+</html>

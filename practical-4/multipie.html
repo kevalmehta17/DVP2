@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multiple Pie Charts using CanvasJS</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <style>
+      .chartWrapper {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 20px auto;
+        width: 90%;
+      }
+      .chartBox {
+        width: 45%;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">Multiple Pie Charts Using CanvasJS</h2>
+    <div class="chartWrapper">
+      <div id="chartContainer1" class="chartBox"></div>
+      <div id="chartContainer2" class="chartBox"></div>
+    </div>
+
+    <script>
+      const data = [
+        { category: "0-10", value1: 100, value2: 120 },
+        { category: "10-20", value1: 90, value2: 95 },
+        { category: "20-30", value1: 66, value2: 75 },
+        { category: "30-40", value1: 60, value2: 50 },
+      ];
+
+      const formattedData1 = data.map((d) => ({
+        label: d.category,
+        y: d.value1,
+      }));
+
+      const formattedData2 = data.map((d) => ({
+        label: d.category,
+        y: d.value2,
+      }));
+
+      const chart1 = new CanvasJS.Chart("chartContainer1", {
+        animationEnabled: true,
+        title: {
+          text: "Group A",
+        },
+        data: [
+          {
+            type: "pie",
+            startAngle: 240,
+            toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+            showInLegend: true,
+            legendText: "{label}",
+            dataPoints: formattedData1,
+          },
+        ],
+      });
+
+      const chart2 = new CanvasJS.Chart("chartContainer2", {
+        animationEnabled: true,
+        title: {
+          text: "Group B",
+        },
+        data: [
+          {
+            type: "pie",
+            startAngle: 240,
+            toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+            showInLegend: true,
+            legendText: "{label}",
+            dataPoints: formattedData2,
+          },
+        ],
+      });
+
+      chart1.render();
+      chart2.render();
+    </script>
+  </body>
+</html>
