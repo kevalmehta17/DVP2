@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>STACKED COLUMN CHART / using D3.js & CanvasJS</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <style>
+      #chartContainer {
+        width: 80%;
+        height: 400px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">
+      Stacked Column Chart Using D3.js and CanvasJS
+    </h2>
+    <div id="chartContainer"></div>
+    <script>
+      var data = [
+        { category: "P-1", value1: 32, value2: 10 },
+        { category: "P-2", value1: 40, value2: 20 },
+        { category: "P-3", value1: 25, value2: 15 },
+        { category: "P-4", value1: 60, value2: 30 },
+        { category: "P-5", value1: 35, value2: 25 },
+        { category: "P-6", value1: 20, value2: 15 },
+      ];
+      var formattedData1 = data.map(function (d) {
+        return { label: d.category, y: d.value1 };
+      });
+      var formattedData2 = data.map(function (d) {
+        return { label: d.category, y: d.value2 };
+      });
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: { text: "SALES (Stacked)" },
+        axisY: { title: "Sales in Units" },
+        data: [
+          {
+            type: "stackedColumn",
+            name: "Product 1",
+            showInLegend: true,
+            color: "#FF5733",
+            dataPoints: formattedData1,
+          },
+          {
+            type: "stackedColumn",
+            name: "Product 2",
+            showInLegend: true,
+            color: "#33B5FF",
+            dataPoints: formattedData2,
+          },
+        ],
+      });
+      chart.render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>STACKED COLUMN CHART / using D3.js & CanvasJS</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <style>
+      #chartContainer {
+        width: 80%;
+        height: 400px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">Column Chart Using D3.js and CanvasJS</h2>
+    <div id="chartContainer"></div>
+    <script>
+      var data = [
+        { category: "0-10", value: 100 },
+        { category: "10-20", value: 90 },
+        { category: "20-30", value: 66 },
+        { category: "30-40", value: 60 },
+        { category: "40-50", value: 80 },
+        { category: "50-60", value: 40 },
+      ];
+      var formattedData1 = data.map(function (d) {
+        return { label: d.category, y: d.value };
+      });
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+          text: "AGE group",
+        },
+        axisY: {
+          title: "No. of people",
+        },
+        data: [
+          {
+            type: "column",
+            name: "Product 1",
+            showInLegend: true,
+            color: "#FF5733",
+            dataPoints: formattedData1,
+          },
+        ],
+      });
+      chart.render();
+    </script>
+  </body>
+</html>

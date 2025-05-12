@@ -1,11 +1,10 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>COLUMN CHART / using D3.js & CanvasJS</title>
+    <title>LINE CHART / using D3.js & CanvasJS</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    ;
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    ;
     <style>
       #chartContainer {
         width: 80%;
@@ -15,16 +14,16 @@
     </style>
   </head>
   <body>
-    <h2 style="text-align: center">Column Chart Using D3.js and CanvasJS</h2>
+    <h2 style="text-align: center">Line Chart Using D3.js and CanvasJS</h2>
     <div id="chartContainer"></div>
     <script>
       var data = [
-        { category: "Apples", value: 32 },
-        { category: "Bananas", value: 45 },
-        { category: "Cherries", value: 25 },
-        { category: "Grapes", value: 50 },
-        { category: "Mangoes", value: 35 },
-        { category: "Oranges", value: 40 },
+        { category: "0-10", value: 100 },
+        { category: "10-20", value: 90 },
+        { category: "20-30", value: 66 },
+        { category: "30-40", value: 60 },
+        { category: "40-50", value: 80 },
+        { category: "50-60", value: 40 },
       ];
       var formattedData = data.map(function (d) {
         return { label: d.category, y: d.value };
@@ -33,15 +32,15 @@
         animationEnabled: true,
         theme: "light2",
         title: {
-          text: "Fruit Sales Data",
+          text: "Age Group Distribution",
         },
-        axisY: {
-          title: "Sales in Units",
-        },
-
+        axisY: { title: "No.of People" },
         data: [
           {
-            type: "column",
+            type: "line",
+            name: "Age Group",
+            showInLegend: true,
+            color: "#FF5733",
             dataPoints: formattedData,
           },
         ],
