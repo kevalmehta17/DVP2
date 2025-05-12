@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Pie Chart with Google Charts</title>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      // Load Google Charts
+      google.charts.load("current", { packages: ["corechart"] });
+
+      // Callback function when Google Charts is loaded
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Data for the pie chart
+        var data = google.visualization.arrayToDataTable([
+          ["Category", "Value"],
+          ["Electronics", 35],
+          ["Clothing", 25],
+          ["Groceries", 20],
+          ["Furniture", 10],
+          ["Others", 10],
+        ]);
+
+        // Chart options
+        var options = {
+          title: "Sales Distribution",
+          pieHole: 0.4, // Creates a donut chart
+          width: 600,
+          height: 400,
+        };
+
+        // Create and draw the chart
+        var chart = new google.visualization.PieChart(
+          document.getElementById("piechart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <h2>3D Pie Chart Example</h2>
+    <div id="piechart"></div>
+  </body>
+</html>
